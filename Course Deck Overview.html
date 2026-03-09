@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Funded Trader Survival Blueprint | LW Trades</title>
+<style>
+:root{
+  --bg1:#120818;
+  --bg2:#2b0f3a;
+  --stroke:rgba(255,255,255,.10);
+  --text:rgba(255,255,255,.92);
+  --muted:rgba(255,255,255,.72);
+  --dim:rgba(255,255,255,.55);
+  --accent:#8e5cff;
+  --accent2:#b47bff;
+  --accent-glow:rgba(142,92,255,.3);
+  --green:#42d17a;
+  --green-glow:rgba(66,209,122,.3);
+  --danger:#ff5c5c;
+  --danger-glow:rgba(255,92,92,.3);
+  --gold:#d4af37;
+  --shadow: 0 24px 90px rgba(0,0,0,.55);
+  --radius:22px;
+  --maxw: 1100px;
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+
+body{
+  margin:0;
+  min-height:100vh;
+  color:var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  overflow:hidden;
+}
+
+.slide{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:40px 20px;
+  background:
+    radial-gradient(1200px 800px at 15% 20%, rgba(142,92,255,.24), transparent 55%),
+    radial-gradient(900px 700px at 85% 25%, rgba(66,209,122,.14), transparent 55%),
+    radial-gradient(800px 650px at 45% 90%, rgba(180,123,255,.16), transparent 60%),
+    linear-gradient(180deg, var(--bg2), var(--bg1) 55%, #07040a);
+}
+
+.container{
+  width:min(var(--maxw),100%);
+  margin:0 auto;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  border: 1px solid var(--stroke);
+  border-radius: calc(var(--radius) + 6px);
+  box-shadow: var(--shadow);
+  overflow:hidden;
+  min-height:80vh;
+  display:flex;
+  flex-direction:column;
+}
+
+.header{
+  background: rgba(0,0,0,.3);
+  padding: 24px 40px;
+  border-bottom: 1px solid var(--stroke);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lesson-badge{
+  font-size: 14px;
+  color: var(--accent2);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.content{
+  padding: 60px 40px;
+  text-align: center;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+.kicker{ 
+  letter-spacing:.3em; 
+  text-transform:uppercase; 
+  font-size:12px; 
+  color: var(--accent2);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+h1{
+  margin:0 0 20px 0;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.1;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff 0%, var(--accent2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h2{
+  margin:0 0 16px 0;
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.15;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff 0%, var(--accent2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.body-text{
+  color: var(--muted);
+  font-size: clamp(16px, 2.2vw, 20px);
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto 30px;
+}
+
+.subtitle{
+  color: var(--muted);
+  font-size: clamp(18px, 2.5vw, 24px);
+  line-height: 1.5;
+  max-width: 800px;
+  margin: 0 auto 40px;
+}
+
+/* Course Cover Specific Styles */
+.course-badge{
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(142,92,255,.2), rgba(66,209,122,.15));
+  border: 2px solid var(--accent);
+  color: var(--accent2);
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 20px 0;
+  font-size: 14px;
+}
+
+.icon-row{
+  display: flex;
+  gap: 50px;
+  margin-top: 48px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.icon-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-circle{
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: rgba(142,92,255,.15);
+  border: 2px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  box-shadow: 0 8px 30px var(--accent-glow);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.icon-item:hover .icon-circle{
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px var(--accent-glow);
+}
+
+.icon-item span{
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Module Overview Grid */
+.module-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 1000px;
+  margin-top: 20px;
+}
+
+.module-card{
+  background: rgba(0,0,0,.25);
+  border: 1px solid var(--stroke);
+  border-radius: 16px;
+  padding: 28px;
+  text-align: left;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.module-card:hover{
+  transform: translateY(-5px);
+  border-color: var(--accent);
+}
+
+.module-number{
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.module-title{
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.module-desc{
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.module-icon{
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+/* Individual Module Slides */
+.module-hero{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.module-hero-icon{
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(142,92,255,.15);
+  border: 3px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  box-shadow: 0 12px 40px var(--accent-glow);
+}
+
+.module-hero-icon.green{
+  background: rgba(66,209,122,.15);
+  border-color: var(--green);
+  box-shadow: 0 12px 40px var(--green-glow);
+}
+
+.module-hero-icon.danger{
+  background: rgba(255,92,92,.15);
+  border-color: var(--danger);
+  box-shadow: 0 12px 40px var(--danger-glow);
+}
+
+.lesson-list{
+  text-align: left;
+  max-width: 600px;
+  margin: 30px auto 0;
+}
+
+.lesson-item{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--stroke);
+}
+
+.lesson-item:last-child{
+  border-bottom: none;
+}
+
+.lesson-bullet{
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.lesson-text{
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.footer{
+  background: rgba(0,0,0,.3);
+  padding: 20px 40px;
+  border-top: 1px solid var(--stroke);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.nav-links{
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a, .nav-btn{
+  color: var(--accent2);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.3s;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+}
+
+.nav-links a:hover, .nav-btn:hover{
+  background: rgba(142,92,255,.2);
+}
+
+.progress-dots{
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.2);
+  transition: background 0.3s;
+}
+
+.dot.active{
+  background: var(--accent);
+}
+
+@media (max-width: 768px){
+  .content{ padding: 40px 20px; }
+  .header{ padding: 20px 24px; }
+  .icon-row{ gap: 30px; }
+  .module-grid{ grid-template-columns: 1fr; }
+  .footer{ flex-direction: column; gap: 12px; text-align: center; }
+  .icon-circle{ width: 70px; height: 70px; font-size: 2rem; }
+}
+</style>
+<base target="_blank">
+</head>
+<body>
+
+<!-- SLIDE 1: Course Cover -->
+<section class="slide" id="slide1">
+  <div class="container">
+    <div class="header">
+      <div class="lesson-badge">Course</div>
+      <div style="color: var(--muted); font-size: 0.9rem;">Funded Trader Survival Blueprint</div>
+    </div>
+
+    <div class="content">
+      <div class="kicker">Complete Course Overview</div>
+      <h1>The Funded Trader<br>Survival Blueprint</h1>
+      <p class="subtitle">
+        The psychological infrastructure that keeps prop firm accounts alive long enough to get payouts
+      </p>
+      <div class="course-badge">5 Modules • 25+ Lessons • Lifetime Access</div>
+
+      <div class="icon-row">
+        <div class="icon-item">
+          <div class="icon-circle">🧠</div>
+          <span>Psychology</span>
+        </div>
+        <div class="icon-item">
+          <div class="icon-circle">⚡</div>
+          <span>Systems</span>
+        </div>
+        <div class="icon-item">
+          <div class="icon-circle">🛡️</div>
+          <span>Survival</span>
+        </div>
+        <div class="icon-item">
+          <div class="icon-circle">📈</div>
+          <span>Consistency</span>
+        </div>
+        <div class="icon-item">
+          <div class="icon-circle">💰</div>
+          <span>Payouts</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>Module Overview</div>
+      <div class="nav-links">
+        <button class="nav-btn" onclick="nextSlide()">Start Course →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 2: All Modules Overview -->
+<section class="slide" id="slide2">
+  <div class="container">
+    <div class="header">
+      <div class="lesson-badge">Course Map</div>
+      <div style="color: var(--muted); font-size: 0.9rem;">The Funded Trader Survival Blueprint</div>
+    </div>
+
+    <div class="content">
+      <div class="kicker">Your Journey</div>
+      <h2>Five Modules to Funded Status</h2>
+      <p class="body-text">From blown accounts to consistent payouts—each module builds the psychological foundation for survival.</p>
+
+      <div class="module-grid">
+        <div class="module-card">
+          <div class="module-icon">🛡️</div>
+          <div class="module-number">Module 1</div>
+          <div class="module-title">Protect Your Tomorrow</div>
+          <div class="module-desc">Identity shift, emotional regulation, and professional mindset development</div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-icon">⚖️</div>
+          <div class="module-number">Module 2</div>
+          <div class="module-title">Risk Identity</div>
+          <div class="module-desc">No more mood risk. Fixed risk parameters that don't change based on emotions</div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-icon">💥</div>
+          <div class="module-number">Module 3</div>
+          <div class="module-title">The Blow-Up</div>
+          <div class="module-desc">Understanding the 94% failure rate and the psychology of catastrophic loss</div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-icon">🚑</div>
+          <div class="module-number">Module 4</div>
+          <div class="module-title">Recovery Protocol</div>
+          <div class="module-desc">Emergency stop procedures and post-loss recovery rituals</div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-icon">🏆</div>
+          <div class="module-number">Module 5</div>
+          <div class="module-title">The Funded Path</div>
+          <div class="module-desc">Consistency equations, stacking green days, and payout optimization</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>1 of 7</div>
+      <div class="nav-links">
+        <button class="nav-btn" onclick="prevSlide()">← Back</button>
+        <button class="nav-btn" onclick="nextSlide()">Module 1 →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 3: Module 1 - Protect Your Tomorrow -->
+<section class="slide" id="slide3">
+  <div class="container">
+    <div class="header">
+      <div class="lesson-badge">Module 1</div>
+      <div style="color: var(--muted); font-size: 0.9rem;">Protect Your Tomorrow</div>
+    </div>
+
+    <div class="content">
+      <div class="module-hero">
+        <div class="module-hero-icon">🛡️</div>
+        <div class="kicker">Module 1</div>
+        <h2>Protect Your Tomorrow</h2>
+        <p class="body-text">Building the identity, systems, and rituals that separate funded traders from blown accounts.</p>
+      </div>
+
+      <div class="lesson-list">
+        <div class="lesson-item">
+          <div class="lesson-bullet"></div>
+          <div class="lesson-text"><strong>Lesson 0:</strong> The $12k Lesson</div>
+        </div>
+        <div class="lesson-item">
+          <div class="lesson-bullet"></div>
+          <div class="lesson-text"><strong>Lesson 1.1:</strong> The Identity Shift</div>
+        </div>
+        <div class="lesson-item">
+          <div class="lesson-bullet"></div>
+          <div class="lesson-text"><strong>Lesson 1.2:</strong> Emotional Regulation Systems</div>
+        </div>
+        <div class="lesson-item">
+          <div class="lesson-bullet"></div>
+          <div class="lesson-text"><strong>Lesson 1.3:</strong> The Professional vs. The Amateur Mindset</div>
+        </div>
+        <div class="lesson-item">
+          <div class="lesson-bullet"></div>
+          <div class="lesson-text"><strong>Lesson 1.4:</strong> Building Your Trading Rituals</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>2 of 7</div>
+      <div class="nav-links">
+        <button class="nav-btn" onclick="prevSlide()">← Back</button>
+        <button class="nav-btn" onclick="nextSlide()">Module 2 →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 4: Module 2 - Risk Identity -->
+<section class="slide" id="slide4">
+  <div class="container">
+    <div class="header">
+      <div class="lesson-badge">Module 2</div>
+      <div style="color: var(--muted); font-size: 0.9rem;">Risk Identity</div>
+    </div>
+
+    <div class="content" style="padding: 40px;">
+      <div class="module-hero" style="gap: 16px;">
+        <div class="module-hero-icon green" style="width: 100px; height: 100px; font-size: 3rem;">⚖️</div>
+        <div class="kicker" style="margin-bottom: 8px;">Module 2</div>
+        <h2 style="margin-bottom: 8px;">Risk Identity</h2>
+        <p class="body-text" style="margin-bottom: 20px;">Fixed risk parameters that don't change based on how you feel.</p>
+      </div>
+
+      <div class="lesson-list" style="margin-top: 20px;">
+        <div class="lesson-item" style="padding: 12px 0;">
+          <div class="lesson-bullet" style="background: var(--green);"></div>
+          <div class="lesson-text"><strong>Lesson 2.1:</strong> The $2,000 Rule That Saves Careers</div>
+        </div>
+        <div class="lesson-item" style="padding: 12px 0;">
+          <div class="lesson-bullet" style="background: var(--green);"></div>
+          <div class="lesson-text"><strong>Lesson 2.2:</strong> Pre-Market Risk Ritual</div>
+        </div>
+        <div class="lesson-item" style="padding: 12px 0;">
+          <div class="lesson-bullet" style="background: var(--green);"></div>
+          <div class="lesson-text"><strong>Lesson 2.3:</strong> Position Sizing: The Math of Survival</div>
+        </div>
+        <div class="lesson-item" style="padding: 12px 0;">
+          <div class="lesson-bullet" style="background: var(--green);"></div>
+          <div class="lesson-text"><strong>Lesson 2.4:</strong> When to Walk Away: The 3-Strike Rule</div>
+        </div>
+        <div class="lesson-item" style="padding: 12px 0;">
+          <div class="lesson-bullet" style="background: var(--green);"></div>
+          <div class="lesson-text"><strong>Lesson 2.5:</strong> Risk Identity in Action</div>
+        </div>
+        <div class="lesson-item" style="padding: 12px 0;">
+          <div class="lesson-bullet" style="background: var(--green);"></div>
+          <div class="lesson-text"><strong>Lesson 2.6:</strong> The Pre-Trade Checklist</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>3 of 7</div>
+      <div class="nav-links">
+        <button class="nav-btn" onclick="prevSlide()">← Back</button>
+        <button class="nav-btn" onclick="nextSlide()">Module 3 →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 5: Module 3 - The Blow-Up -->
+<section class="slide" id="slide5">
+  <div class="container">
+    <div class="header">
+      <div class="lesson-badge">Module 3</div>
+      <div style="color: var(--muted); font-size: 0.9rem;">The Blow-Up</div>
+    </div>
+
+    <div class="content">
+      <div class="module-hero">
+        <div class="module-hero-icon danger">💥</div>
+        <div class="kicker">Module 3</div>
+        <h2>The Blow-Up</h2>
+        <p class="body-text">Understanding the 94% failure rate and the psychology of catastrophic loss before it happens to you.</p>
+      </div>
+
+      <div class="lesson-list">
+        <div class="lesson-item">
+          <div class="lesson-bullet" style="background: var(--danger);"></div>
+          <div class="lesson-text"><strong>Lesson 3.1:</strong> The 94% Problem: By the Numbers</div>
+        </div>
+        <div class="lesson-item">
+          <div class="lesson-bullet" style="background: var(--danger);"></div>
+          <div class="lesson-text"><strong>Lesson 3.2:</strong> The Revenge Spiral: 7 Phases - Interactive</div>
+        </div>
+        <div class="lesson-item">
+          <div class="lesson-bullet" style="background: var(--danger);"></div>
+          <div class="lesson-text"><strong>Lesson 3.3:</strong> The Psychology of Catastrophic Loss</div>
+        </div>
+        <div class="lesson-item">
+          <div class="lesson-bullet" style="background: var(--danger);"></div>
+          <div class="lesson-text"><strong>Lesson 3.4:</strong> The Warning Signs You Can't See</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>4 of 7</div>
+      <div class="nav-links">
+        <button class="nav-btn" onclick="prevSlide()">← Back</button>
+        <button class="nav-btn" onclick="nextSlide()">Module 4 →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 6: Module 4 - Recovery Protocol -->
+<section class="slide" id="slide6">
+  <div class="container">
+    <div class="header">
+      <div class="lesson-badge">Module 4</div>
+      <div style="color: var(--muted); font-size: 0.9rem;">Recovery Protocol</div>
+    </div>
+
+    <div class="content">
+      <div class="module-hero">
+        <div class="module-hero-icon">🚑</div>
+        <div class="kicker">Module 4</div>
+        <h2>Recovery Protocol</h2>
+        <p class="body-text">Emergency stop procedures and post-loss recovery rituals to get you back on track.</p>
+      </div>
+
+      <div class="lesson-list">
+        <div class="lesson-item">
+          <div class="lesson-bullet"></div>
+          <div class="lesson-text"><strong>Lesson 4.1:</strong> Recognizing Spiral Warning Signs</div>
+        </div>
+        <div class="lesson-item">
+          <div class="lesson-bullet"></div>
+          <div class="lesson-text"><strong>Lesson 4.2:</strong> The Emergency Stop Procedure</div>
+        </div>
+        <div class="lesson-item">
+          <div class="lesson-bullet"></div>
+          <div class="lesson-text"><strong>Lesson 4.3:</strong> Post-Loss Recovery Rituals</div>
+        </div>
+        <div class="lesson-item">
+          <div class="lesson-bullet"></div>
+          <div class="lesson-text"><strong>Lesson 4.4:</strong> Rebuilding Confidence and Capital</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>5 of 7</div>
+      <div class="nav-links">
+        <button class="nav-btn" onclick="prevSlide()">← Back</button>
+        <button class="nav-btn" onclick="nextSlide()">Module 5 →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 7: Module 5 - The Funded Path -->
+<section class="slide" id="slide7">
+  <div class="container">
+    <div class="header">
+      <div class="lesson-badge">Module 5</div>
+      <div style="color: var(--muted); font-size: 0.9rem;">The Funded Path</div>
+    </div>
+
+    <div class="content">
+      <div class="module-hero">
+        <div class="module-hero-icon" style="background: rgba(212,175,55,.15); border-color: var(--gold); box-shadow: 0 12px 40px rgba(212,175,55,.3);">🏆</div>
+        <div class="kicker">Module 5</div>
+        <h2>The Funded Path</h2>
+        <p class="body-text">Consistency equations, stacking green days, and the psychology of payout optimization.</p>
+      </div>
+
+      <div class="lesson-list">
+        <div class="lesson-item">
+          <div class="lesson-bullet" style="background: var(--gold);"></div>
+          <div class="lesson-text"><strong>Lesson 5.1:</strong> The Consistency Equation</div>
+        </div>
+        <div class="lesson-item">
+          <div class="lesson-bullet" style="background: var(--gold);"></div>
+          <div class="lesson-text"><strong>Lesson 5.2:</strong> Stacking Green Days</div>
+        </div>
+        <div class="lesson-item">
+          <div class="lesson-bullet" style="background: var(--gold);"></div>
+          <div class="lesson-text"><strong>Lesson 5.3:</strong> Payout Optimization</div>
+        </div>
+        <div class="lesson-item">
+          <div class="lesson-bullet" style="background: var(--gold);"></div>
+          <div class="lesson-text"><strong>Lesson 5.4:</strong> From Funded to Career Trader</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>6 of 7</div>
+      <div class="nav-links">
+        <button class="nav-btn" onclick="prevSlide()">← Back</button>
+        <button class="nav-btn" onclick="nextSlide()">Resources →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 8: Resources & Downloads -->
+<section class="slide" id="slide8">
+  <div class="container">
+    <div class="header">
+      <div class="lesson-badge">Bonus</div>
+      <div style="color: var(--muted); font-size: 0.9rem;">Resources and Downloads</div>
+    </div>
+
+    <div class="content">
+      <div class="kicker">Fast-Action Bonuses</div>
+      <h2>Resources & Downloads</h2>
+      <p class="body-text">Everything you need to implement the Survival Blueprint immediately.</p>
+
+      <div class="module-grid" style="max-width: 800px;">
+        <div class="module-card">
+          <div class="module-icon">📋</div>
+          <div class="module-title">Pre-Session Checklist</div>
+          <div class="module-desc">Printable daily checklist for mental, technical, and risk preparation</div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-icon">🎧</div>
+          <div class="module-title">Break Protocol Audio</div>
+          <div class="module-desc">10-minute guided audio for mid-session emotional resets</div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-icon">📊</div>
+          <div class="module-title">Risk Calculator Suite</div>
+          <div class="module-desc">Excel spreadsheets for position sizing and drawdown recovery</div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-icon">👥</div>
+          <div class="module-title">Private Community</div>
+          <div class="module-desc">Discord group for accountability, weekly Q&A, and peer support</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 40px; padding: 24px; background: rgba(142,92,255,.1); border: 1px solid var(--accent); border-radius: 12px; max-width: 600px;">
+        <p style="color: var(--muted); font-size: 16px; margin: 0;">
+          <span style="color: var(--accent2); font-weight: 700;">🛡️ Survival First Guarantee:</span> 
+          If you implement these protocols and don't feel more confident managing drawdowns within 30 days, full refund. I only want traders serious about longevity.
+        </p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>7 of 7</div>
+      <div class="nav-links">
+        <button class="nav-btn" onclick="prevSlide()">← Back</button>
+        <button class="nav-btn" onclick="goToSlide(0)">Start Over ↻</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.style.display = i === index ? 'flex' : 'none';
+  });
+  currentSlide = index;
+}
+
+function nextSlide() {
+  if (currentSlide < slides.length - 1) {
+    showSlide(currentSlide + 1);
+  }
+}
+
+function prevSlide() {
+  if (currentSlide > 0) {
+    showSlide(currentSlide - 1);
+  }
+}
+
+function goToSlide(index) {
+  showSlide(index);
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight') nextSlide();
+  if (e.key === 'ArrowLeft') prevSlide();
+});
+
+// Initialize
+showSlide(0);
+</script>
+
+</body>
+</html>
